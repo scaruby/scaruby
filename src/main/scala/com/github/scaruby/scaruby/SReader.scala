@@ -4,8 +4,10 @@ import java.io.{BufferedReader, FileInputStream, InputStreamReader}
 import java.nio.CharBuffer
 import java.util.stream
 
-class SReader(path: String, encoding: String = DefaultEncoding) {
+class SReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SReader] {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
+
+  override def self: SReader = this
 
   def reset(): Unit = fileReader.reset()
 

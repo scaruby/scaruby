@@ -3,8 +3,10 @@ package com.github.scaruby.scaruby
 import java.io.{FileOutputStream, OutputStreamWriter, PrintWriter}
 import java.util.Locale
 
-class SWriter(path: String, encoding: String = DefaultEncoding) {
+class SWriter(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SWriter] {
   private[this] val fileWriter: PrintWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(path), encoding))
+
+  override def self: SWriter = this
 
   def print(obj: scala.Any): Unit = fileWriter.print(obj)
 

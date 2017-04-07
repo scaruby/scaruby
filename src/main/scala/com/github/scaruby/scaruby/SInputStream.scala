@@ -4,7 +4,9 @@ import java.io.{BufferedInputStream, FileInputStream}
 
 import scala.collection.mutable
 
-class SInputStream(path: String) {
+class SInputStream(path: String) extends SClosableResource[SInputStream] {
+  override def self: SInputStream = this
+
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
 
   def reset(): Unit = fileStream.reset()
