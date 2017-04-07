@@ -1,0 +1,13 @@
+language: scala
+sudo: false
+cache:
+  directories:
+  - $HOME/.ivy2/cache
+  - $HOME/.sbt/launchers
+scala: 
+- "2.12.1"
+- "2.11.8"
+jdk: oraclejdk8
+script:
+- sbt ++$TRAVIS_SCALA_VERSION test
+- find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
