@@ -37,7 +37,7 @@ class SReader(path: String, encoding: String = DefaultEncoding) extends SClosabl
     var ch: Int = -1
     val buffer = new java.lang.StringBuilder
     while({ch = read(); ch} != -1) {
-      buffer.append(ch)
+      buffer.append(ch.asInstanceOf[Char])
     }
     new String(buffer)
   }
