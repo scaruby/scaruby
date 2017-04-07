@@ -9,21 +9,15 @@ class SInputStream(path: String) {
 
   def reset(): Unit = fileStream.reset()
 
-  def mark(readlimit: Int): Unit = fileStream.mark(readlimit)
+  def mark(limit: Int): Unit = fileStream.mark(limit)
 
   def skip(n: Long): Long = fileStream.skip(n)
 
-  def read(b: Array[Byte], off: Int, len: Int): Int = fileStream.read(b, off, len)
-
-  def markSupported(): Boolean = fileStream.markSupported()
-
-  def close(): Unit = fileStream.close()
-
-  def available(): Int = fileStream.available()
+  def readWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
 
   def read(): Int = fileStream.read()
 
-  def read(b: Array[Byte]): Int = fileStream.read(b)
+  def readTo(b: Array[Byte]): Int = fileStream.read(b)
 
   def readAll(): Array[Byte] = {
     val buffer = mutable.Buffer[Byte]()
@@ -33,4 +27,10 @@ class SInputStream(path: String) {
     }
     buffer.toArray
   }
+
+  def markSupported(): Boolean = fileStream.markSupported()
+
+  def close(): Unit = fileStream.close()
+
+  def available(): Int = fileStream.available()
 }

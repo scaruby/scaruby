@@ -7,14 +7,14 @@ class SOutputStream(path: String) {
 
   def write(b: Int): Unit = fileStream.write(b)
 
-  def write(b: Array[Byte], off: Int, len: Int): Unit = fileStream.write(b, off, len)
+  def writeWithOffset(b: Array[Byte], offset: Int, length: Int): Unit = fileStream.write(b, offset, length)
 
   def flush(): Unit = fileStream.flush()
 
-  def write(b: Array[Byte]): Unit = fileStream.write(b)
+  def writeAll(b: Array[Byte]): Unit = fileStream.write(b)
 
-  def writeAll(s: String, encoding: String = System.getProperty("file.encoding")): Unit = {
-    write(s.getBytes(encoding))
+  def writeString(s: String, encoding: String = DefaultEncoding): Unit = {
+    writeAll(s.getBytes(encoding))
   }
 
   def close(): Unit = fileStream.close()
