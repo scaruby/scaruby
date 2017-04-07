@@ -1,7 +1,6 @@
-# Scaruby
+# Scaruby: Ruby-like lightweight scripting library for Scala [![Build Status](https://travis-ci.org/scaruby/scaruby.png?branch=master)](https://travis-ci.org/scaruby/scaruby)
 
-Scaruby is a Ruby-like lightweight scripting library for Scala.  Scaruby is not a thin layer of `java.io`
-but a thick layer.  Users don't need to know the detail of `java.io`.
+Scaruby is not a thin layer of `java.io` but a thick layer.  Users don't need to know the detail of `java.io`.
 
 ## Usage
 
