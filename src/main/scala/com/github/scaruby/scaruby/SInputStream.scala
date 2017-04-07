@@ -4,7 +4,7 @@ import java.io.{BufferedInputStream, FileInputStream}
 
 import scala.collection.mutable
 
-class InStream(path: String) {
+class SInputStream(path: String) {
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
 
   def reset(): Unit = fileStream.reset()

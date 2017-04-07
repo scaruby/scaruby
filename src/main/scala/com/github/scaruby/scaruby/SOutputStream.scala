@@ -2,7 +2,7 @@ package com.github.scaruby.scaruby
 
 import java.io.{BufferedOutputStream, FileOutputStream}
 
-class OutStream(path: String) {
+class SOutputStream(path: String) {
   private[this] val fileStream = new BufferedOutputStream(new FileOutputStream(path))
 
   def write(b: Int): Unit = fileStream.write(b)
