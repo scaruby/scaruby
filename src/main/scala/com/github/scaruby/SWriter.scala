@@ -8,6 +8,8 @@ class SWriter(path: String, encoding: String = DefaultEncoding) extends SClosabl
 
   override def self: SWriter = this
 
+  def hasError(): Boolean = fileWriter.checkError()
+
   def close(): Unit = fileWriter.close()
 
   def write(buf: Array[Char]): Unit = fileWriter.write(buf)
@@ -29,8 +31,6 @@ class SWriter(path: String, encoding: String = DefaultEncoding) extends SClosabl
   def append(c: Char): PrintWriter = fileWriter.append(c)
 
   def printf(l: Locale, format: String, args: AnyRef*): PrintWriter = fileWriter.printf(l, format, args)
-
-  def checkError(): Boolean = fileWriter.checkError()
 
   def append(csq: CharSequence): PrintWriter = fileWriter.append(csq)
 
