@@ -12,29 +12,19 @@ class SWriter(path: String, encoding: String = DefaultEncoding) extends SClosabl
 
   def close(): Unit = fileWriter.close()
 
-  def write(buf: Array[Char]): Unit = fileWriter.write(buf)
-
-  def writeWith(buf: Array[Char], off: Int, len: Int): Unit = fileWriter.write(buf, off, len)
+  def write(buf: Array[Char])(implicit off: Int = 0, len: Int = buf.length): Unit = fileWriter.write(buf, off, len)
 
   def writeChar(c: Int): Unit = fileWriter.write(c)
 
-  def writeString(s: String): Unit = fileWriter.write(s)
+  def writeString(s: String)(implicit off: Int = 0, len: Int = s.length): Unit = fileWriter.write(s, off, len)
 
-  def writeStringWith(s: String, off: Int, len: Int): Unit = fileWriter.write(s, off, len)
+  def format(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter = fileWriter.format(l, format, args)
 
-  def format(l: Locale, format: String, args: AnyRef*): PrintWriter = fileWriter.format(l, format, args)
+  def printf(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter = fileWriter.printf(l, format, args)
 
-  def printf(format: String, args: AnyRef*): PrintWriter = fileWriter.printf(format, args)
+  def append(cseq: CharSequence)(implicit start: Int = 0, end: Int = cseq.length()): PrintWriter = fileWriter.append(cseq)
 
-  def format(format: String, args: AnyRef*): PrintWriter = fileWriter.format(format, args)
-
-  def append(c: Char): PrintWriter = fileWriter.append(c)
-
-  def printf(l: Locale, format: String, args: AnyRef*): PrintWriter = fileWriter.printf(l, format, args)
-
-  def append(csq: CharSequence): PrintWriter = fileWriter.append(csq)
-
-  def appendWith(csq: CharSequence, start: Int, end: Int): PrintWriter = fileWriter.append(csq, start, end)
+  def appendChar(c: Char): PrintWriter = fileWriter.append(c)
 
   def print[A:Show](x: A): Unit = {
     fileWriter.print(implicitly[Show[A]].stringOf(x))
