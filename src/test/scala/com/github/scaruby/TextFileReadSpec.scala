@@ -16,6 +16,7 @@ class TextFileReadSpec extends FunSpec with DiagrammedAssertions {
       assert(test1Lines === Seq(
         "This", "is", "a", "test"
       ))
+
     }
   }
 }
