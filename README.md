@@ -19,5 +19,5 @@ and you can use Scaruby like the following after importing the package `com.gith
 ```scala
 import com.github.scaruby._
 
-val content = SFile.readAllStrings("file.txt")
+val content = SFile.read("file.txt")
 ```
