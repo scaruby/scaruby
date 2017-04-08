@@ -21,11 +21,15 @@ object SFile {
     block(writer)
   }
 
-  def readAllStrings(path: String, encoding: String = DefaultEncoding): String = openReader(path, encoding){reader =>
+  def read(path: String, encoding: String = DefaultEncoding): String = openReader(path, encoding){ reader =>
     reader.readAll()
   }
 
-  def readAllBytes(path: String): Array[Byte] = openInputStream(path){in =>
+  def readLines(path: String, encoding: String = DefaultEncoding): Seq[String] = openReader(path, encoding){ reader =>
+    reader.readLines()
+  }
+
+  def readBytes(path: String): Array[Byte] = openInputStream(path){ in =>
     in.readAll()
   }
 }

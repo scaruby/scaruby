@@ -4,6 +4,8 @@ import java.io.{BufferedReader, FileInputStream, InputStreamReader}
 import java.nio.CharBuffer
 import java.util.stream
 
+import scala.collection.mutable
+
 class SReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SReader] {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
 
@@ -40,5 +42,14 @@ class SReader(path: String, encoding: String = DefaultEncoding) extends SClosabl
       buffer.append(ch.asInstanceOf[Char])
     }
     new String(buffer)
+  }
+
+  def readLines(): Seq[String] = {
+    val lines = mutable.Buffer[String]()
+    var line: String = null
+    while({line = readLine(); line} != null) {
+      lines += line
+    }
+    lines.toSeq
   }
 }
