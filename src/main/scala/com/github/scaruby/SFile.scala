@@ -1,10 +1,14 @@
 package com.github.scaruby
 
-class SFile {
+import java.io.File
 
+class SFile(path: String) {
+  private[this] final val file = new File(path)
 }
 
 object SFile {
+  def apply(path: String): SFile = new SFile(path)
+
   def openInputStream[A](path: String)(block: SInputStream => A): A = using(new SInputStream(path)){in =>
     block(in)
   }
