@@ -14,10 +14,10 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 libraryDependency += "com.github.scaruby" %% "scaruby" % "0.1-SNAPSHOT"
 ```
 
-and you can use Scaruby like the following after importing the package `com.github.scaruby.scaruby._`:
+and you can use Scaruby like the following after importing the package `com.github.scaruby._`:
 
 ```scala
-import com.github.scaruby.scaruby._
+import com.github.scaruby._
 
 val content = SFile.readAllStrings("file.txt")
 ```

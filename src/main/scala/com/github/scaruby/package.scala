@@ -1,4 +1,5 @@
-package com.github.scaruby
+package com.github
+
 import scala.language.reflectiveCalls
 
 package object scaruby {

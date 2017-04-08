@@ -1,4 +1,4 @@
-package com.github.scaruby.scaruby
+package com.github.scaruby
 
 trait SClosableResource[A <: { def close(): Unit}] {
   def self: A

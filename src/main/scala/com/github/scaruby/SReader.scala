@@ -1,4 +1,4 @@
-package com.github.scaruby.scaruby
+package com.github.scaruby
 
 import java.io.{BufferedReader, FileInputStream, InputStreamReader}
 import java.nio.CharBuffer

@@ -1,4 +1,4 @@
-package com.github.scaruby.scaruby
+package com.github.scaruby
 
 import java.io.{BufferedOutputStream, FileOutputStream}
 
