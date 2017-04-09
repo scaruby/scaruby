@@ -2,11 +2,21 @@ package com.github.scaruby
 
 import java.io.File
 
-class SFile(path: String) {
-  private[this] final val file = new File(path)
+class SFile private (val file: File) {
+  def this(path: String) {
+    this(new File(path))
+  }
 }
 
 object SFile {
+  def withTempFile[A](prefix: String = "", suffix: String = "")(block: SFile => A): A = {
+    val file: SFile = new SFile(File.createTempFile(prefix, suffix))
+    try {
+      block(file)
+    } finally {
+      file.file.delete()
+    }
+  }
   def apply(path: String): SFile = new SFile(path)
 
   def openInputStream[A](path: String)(block: SInputStream => A): A = using(new SInputStream(path)){in =>
