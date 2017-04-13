@@ -12,7 +12,7 @@ class SFileSpec extends FunSpec with DiagrammedAssertions {
 
   describe("SFile.write()") {
     it("temprary file") {
-      SFile.withTempFile(){f =>
+      SFile.withTempFile{f =>
         val content = "Write Test"
         SFile.write(f.path, content)
         val result = SFile.read(f.path)

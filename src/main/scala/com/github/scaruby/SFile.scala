@@ -10,8 +10,9 @@ class SFile private (val file: File) {
 }
 
 object SFile {
-  def withTempFile[A](prefix: String = "prefix", suffix: String = "suffix")(block: SFile => A): A = {
-    val file: SFile = new SFile(File.createTempFile(prefix, suffix))
+  def withTempFile[A](block: SFile => A): A = {
+    val prefix = System.currentTimeMillis().toString
+    val file: SFile = new SFile(File.createTempFile(prefix, ""))
     try {
       block(file)
     } finally {
