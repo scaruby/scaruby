@@ -6,10 +6,11 @@ class SFile private (val file: File) {
   def this(path: String) {
     this(new File(path))
   }
+  def path: String = file.getPath
 }
 
 object SFile {
-  def withTempFile[A](prefix: String = "", suffix: String = "")(block: SFile => A): A = {
+  def withTempFile[A](prefix: String = "prefix", suffix: String = "suffix")(block: SFile => A): A = {
     val file: SFile = new SFile(File.createTempFile(prefix, suffix))
     try {
       block(file)
@@ -45,6 +46,10 @@ object SFile {
 
   def readBytes(path: String): Array[Byte] = openInputStream(path){ in =>
     in.readAll()
+  }
+
+  def write(path: String, content: String, encoding: String = DefaultEncoding): Unit = openWriter(path, encoding){writer =>
+    writer.writeString(content)
   }
 }
 
