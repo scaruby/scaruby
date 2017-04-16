@@ -15,11 +15,11 @@ class SFileInputStream(path: String) extends SClosableResource[SFileInputStream]
 
   def skip(n: Long): Long = fileStream.skip(n)
 
-  def readWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
+  def readTo(b: Array[Byte]): Int = fileStream.read(b)
+
+  def readToWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
 
   def read(): Int = fileStream.read()
-
-  def readTo(b: Array[Byte]): Int = fileStream.read(b)
 
   def readAll(): Array[Byte] = {
     val buffer = mutable.Buffer[Byte]()
