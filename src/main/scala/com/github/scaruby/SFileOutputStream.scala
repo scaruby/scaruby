@@ -2,10 +2,10 @@ package com.github.scaruby
 
 import java.io.{BufferedOutputStream, FileOutputStream}
 
-class SOutputStream(path: String) extends SClosableResource[SOutputStream] {
+class SFileOutputStream(path: String) extends SClosableResource[SFileOutputStream] {
   private[this] val fileStream = new BufferedOutputStream(new FileOutputStream(path))
 
-  override def self: SOutputStream = this
+  override def self: SFileOutputStream = this
 
   def write(b: Int): Unit = fileStream.write(b)
 

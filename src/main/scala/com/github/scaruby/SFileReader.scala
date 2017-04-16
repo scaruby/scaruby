@@ -6,10 +6,10 @@ import java.util.stream
 
 import scala.collection.mutable
 
-class SReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SReader] {
+class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SFileReader] {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
 
-  override def self: SReader = this
+  override def self: SFileReader = this
 
   def reset(): Unit = fileReader.reset()
 

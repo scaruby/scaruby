@@ -21,19 +21,19 @@ object SFile {
   }
   def apply(path: String): SFile = new SFile(path)
 
-  def openInputStream[A](path: String)(block: SInputStream => A): A = using(new SInputStream(path)){in =>
+  def openInputStream[A](path: String)(block: SFileInputStream => A): A = using(new SFileInputStream(path)){ in =>
     block(in)
   }
 
-  def openOutputStream[A](path: String)(block: SOutputStream => A): A = using(new SOutputStream(path)){out =>
+  def openOutputStream[A](path: String)(block: SFileOutputStream => A): A = using(new SFileOutputStream(path)){ out =>
     block(out)
   }
 
-  def openReader[A](path: String, encoding: String = DefaultEncoding)(block: SReader => A): A = using(new SReader(path, encoding)){reader =>
+  def openReader[A](path: String, encoding: String = DefaultEncoding)(block: SFileReader => A): A = using(new SFileReader(path, encoding)){ reader =>
     block(reader)
   }
 
-  def openWriter[A](path: String, encoding: String = DefaultEncoding)(block: SWriter => A): A = using(new SWriter(path, encoding)){writer =>
+  def openWriter[A](path: String, encoding: String = DefaultEncoding)(block: SFileWriter => A): A = using(new SFileWriter(path, encoding)){ writer =>
     block(writer)
   }
 

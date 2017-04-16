@@ -3,10 +3,10 @@ package com.github.scaruby
 import java.io.{FileOutputStream, OutputStreamWriter, PrintWriter}
 import java.util.Locale
 
-class SWriter(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SWriter] {
+class SFileWriter(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SFileWriter] {
   private[this] val fileWriter: PrintWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(path), encoding))
 
-  override def self: SWriter = this
+  override def self: SFileWriter = this
 
   def hasError(): Boolean = fileWriter.checkError()
 

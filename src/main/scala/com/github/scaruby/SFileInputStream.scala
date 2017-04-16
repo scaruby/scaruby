@@ -4,8 +4,8 @@ import java.io.{BufferedInputStream, FileInputStream}
 
 import scala.collection.mutable
 
-class SInputStream(path: String) extends SClosableResource[SInputStream] {
-  override def self: SInputStream = this
+class SFileInputStream(path: String) extends SClosableResource[SFileInputStream] {
+  override def self: SFileInputStream = this
 
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
 
