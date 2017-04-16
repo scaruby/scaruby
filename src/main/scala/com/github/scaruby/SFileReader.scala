@@ -25,9 +25,9 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClo
 
   def read(): Int = fileReader.read()
 
-  def readWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
+  def readToWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
 
-  def read(buffer: CharBuffer): Int = fileReader.read(buffer)
+  def readTo(buffer: CharBuffer): Int = fileReader.read(buffer)
 
   def readAll(): String = {
     var ch: Int = -1
