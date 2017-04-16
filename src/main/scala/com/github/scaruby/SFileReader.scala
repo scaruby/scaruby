@@ -15,12 +15,8 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClo
 
   def readLine(): String = fileReader.readLine()
 
-  def lines(): Stream[String] = {
-    val current = fileReader.readLine()
-    if(current == null)
-      Stream.empty
-    else
-      Stream.cons(current, lines())
+  def lines(): Seq[String] = {
+    Stream.continually(readLine()).takeWhile(_ != null)
   }
 
   def linesIterator(): Iterator[String] = {
