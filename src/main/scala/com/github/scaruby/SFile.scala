@@ -87,7 +87,7 @@ class SFile private (val file: File) {
 
   def delete(): Boolean = file.delete()
 
-  def renameTo(dest: File): Boolean = file.renameTo(dest)
+  def renameTo(dest: SFile): Boolean = file.renameTo(dest.file)
 
   def setReadable(readable: Boolean, ownerOnly: Boolean): Boolean = file.setReadable(readable, ownerOnly)
 
