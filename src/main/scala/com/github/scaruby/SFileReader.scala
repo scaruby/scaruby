@@ -25,21 +25,9 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClo
 
   def read(): Int = fileReader.read()
 
-  def markSupported(): Boolean = fileReader.markSupported()
+  def readWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
 
-  def skip(n: Long): Long = fileReader.skip(n)
-
-  def ready(): Boolean = fileReader.ready()
-
-  def mark(readAheadLimit: Int): Unit = fileReader.mark(readAheadLimit)
-
-  def read(cbuf: Array[Char], off: Int, len: Int): Int = fileReader.read(cbuf, off, len)
-
-  def close(): Unit = fileReader.close()
-
-  def read(target: CharBuffer): Int = fileReader.read(target)
-
-  def read(cbuf: Array[Char]): Int = fileReader.read(cbuf)
+  def read(buffer: CharBuffer): Int = fileReader.read(buffer)
 
   def readAll(): String = {
     var ch: Int = -1
@@ -58,4 +46,15 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClo
     }
     lines.toSeq
   }
+
+  def markSupported(): Boolean = fileReader.markSupported()
+
+  def skip(n: Long): Long = fileReader.skip(n)
+
+  def ready(): Boolean = fileReader.ready()
+
+  def mark(readAheadLimit: Int): Unit = fileReader.mark(readAheadLimit)
+
+  def close(): Unit = fileReader.close()
+
 }
