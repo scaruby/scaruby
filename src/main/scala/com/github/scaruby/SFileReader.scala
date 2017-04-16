@@ -2,9 +2,9 @@ package com.github.scaruby
 
 import java.io.{BufferedReader, FileInputStream, InputStreamReader}
 import java.nio.CharBuffer
-import java.util.stream
 
 import scala.collection.mutable
+import scala.collection.immutable.Stream
 
 class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SFileReader] {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
@@ -15,7 +15,17 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClo
 
   def readLine(): String = fileReader.readLine()
 
-  def lines(): stream.Stream[String] = fileReader.lines()
+  def lines(): Stream[String] = {
+    val current = fileReader.readLine()
+    if(current == null)
+      Stream.empty
+    else
+      Stream.cons(current, lines())
+  }
+
+  def linesIterator(): Iterator[String] = {
+    Iterator.continually(readLine()).takeWhile(_ != null)
+  }
 
   def read(): Int = fileReader.read()
 
