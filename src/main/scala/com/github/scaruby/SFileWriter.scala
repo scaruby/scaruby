@@ -3,6 +3,8 @@ package com.github.scaruby
 import java.io.{FileOutputStream, OutputStreamWriter, PrintWriter}
 import java.util.Locale
 
+import com.github.scaruby.typeclass.Show
+
 class SFileWriter(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SFileWriter] {
   private[this] val fileWriter: PrintWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(path), encoding))
 
