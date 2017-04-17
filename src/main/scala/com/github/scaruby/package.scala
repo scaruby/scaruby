@@ -2,6 +2,8 @@ package com.github
 
 import java.util.Locale
 
+import com.github.scaruby.com.github.scaruby.typeclass.CommandAdapter
+
 import scala.language.reflectiveCalls
 import scala.sys.process.Process
 

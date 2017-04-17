@@ -1,4 +1,4 @@
-package com.github.scaruby
+package com.github.scaruby.com.github.scaruby.typeclass
 
 abstract class CommandAdapter[T] {
   def adapt(source: T): Seq[String]
