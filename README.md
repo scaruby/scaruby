@@ -21,3 +21,12 @@ import com.github.scaruby._
 
 val content = SFile.read("file.txt")
 ```
+
+```scala
+import com.github.scaruby._
+
+val input = "Hello, World!"
+val encoded = SBase64.encode64(input.getBytes("UTF-8"))
+val decoded = new String(SBase64.decode64(encoded), "UTF-8")
+assert(input == decoded)
+```
