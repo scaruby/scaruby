@@ -3,6 +3,7 @@ package com.github
 import java.util.Locale
 
 import scala.language.reflectiveCalls
+import scala.sys.process.Process
 
 package object scaruby {
   final val DefaultEncoding: String = System.getProperty("file.encoding")
@@ -13,5 +14,9 @@ package object scaruby {
     } finally {
       resource.close()
     }
+  }
+  def system[A:CommandAdapter](command: A, cwd: SFile = SFile("."), extraEnv: Seq[(String, String)] = Seq.empty) = {
+    val adapter = implicitly[CommandAdapter[A]]
+    Process(adapter.adapt(command), cwd.file, extraEnv:_*).!!
   }
 }
