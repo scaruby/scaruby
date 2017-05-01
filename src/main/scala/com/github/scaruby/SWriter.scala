@@ -3,6 +3,8 @@ package com.github.scaruby
 import java.io.PrintWriter
 import java.util.Locale
 
+import com.github.scaruby.typeclass.Show
+
 /**
   * Created by Mizushima on 2017/05/01.
   */

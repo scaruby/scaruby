@@ -17,7 +17,7 @@ package object scaruby {
       resource.close()
     }
   }
-  def system[A:CommandAdapter](command: A, cwd: SFile = SFile("."), extraEnv: Seq[(String, String)] = Seq.empty) = {
+  def system[A:CommandAdapter](command: A, cwd: SFile = SFile("."), extraEnv: Seq[(String, String)] = Seq.empty): String = {
     val adapter = implicitly[CommandAdapter[A]]
     Process(adapter.adapt(command), cwd.file, extraEnv:_*).!!
   }
