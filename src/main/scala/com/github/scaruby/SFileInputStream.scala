@@ -4,35 +4,26 @@ import java.io.{BufferedInputStream, FileInputStream}
 
 import scala.collection.mutable
 
-class SFileInputStream(path: String) extends SClosableResource[SFileInputStream] {
-  override def self: SFileInputStream = this
-
+class SFileInputStream(path: String) extends SInputStream[SFileInputStream] {
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
 
-  def reset(): Unit = fileStream.reset()
+  override def self: SFileInputStream = this
 
-  def mark(limit: Int): Unit = fileStream.mark(limit)
+  override def reset(): Unit = fileStream.reset()
 
-  def skip(n: Long): Long = fileStream.skip(n)
+  override def mark(limit: Int): Unit = fileStream.mark(limit)
 
-  def readTo(b: Array[Byte]): Int = fileStream.read(b)
+  override def skip(n: Long): Long = fileStream.skip(n)
 
-  def readToWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
+  override def readTo(b: Array[Byte]): Int = fileStream.read(b)
 
-  def read(): Int = fileStream.read()
+  override def readToWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
 
-  def readAll(): Array[Byte] = {
-    val buffer = mutable.Buffer[Byte]()
-    var b: Int = -1
-    while({ b = read(); b} != -1) {
-      buffer += b.asInstanceOf[Byte]
-    }
-    buffer.toArray
-  }
+  override def read(): Int = fileStream.read()
 
-  def markSupported(): Boolean = fileStream.markSupported()
+  override def markSupported(): Boolean = fileStream.markSupported()
 
-  def close(): Unit = fileStream.close()
+  override def close(): Unit = fileStream.close()
 
-  def available(): Int = fileStream.available()
+  override def available(): Int = fileStream.available()
 }

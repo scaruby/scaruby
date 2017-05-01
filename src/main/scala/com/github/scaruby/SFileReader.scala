@@ -6,55 +6,28 @@ import java.nio.CharBuffer
 import scala.collection.mutable
 import scala.collection.immutable.Stream
 
-class SFileReader(path: String, encoding: String = DefaultEncoding) extends SClosableResource[SFileReader] {
+class SFileReader(path: String, encoding: String = DefaultEncoding) extends SReader[SFileReader] {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
 
   override def self: SFileReader = this
 
-  def reset(): Unit = fileReader.reset()
+  override def reset(): Unit = fileReader.reset()
 
-  def readLine(): String = fileReader.readLine()
+  override def readLine(): String = fileReader.readLine()
 
-  def lines(): Seq[String] = {
-    Stream.continually(readLine()).takeWhile(_ != null).toVector
-  }
+  override def read(): Int = fileReader.read()
 
-  def linesIterator(): Iterator[String] = {
-    Iterator.continually(readLine()).takeWhile(_ != null)
-  }
+  override def readToWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
 
-  def read(): Int = fileReader.read()
+  override def readTo(buffer: CharBuffer): Int = fileReader.read(buffer)
 
-  def readToWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
+  override def markSupported(): Boolean = fileReader.markSupported()
 
-  def readTo(buffer: CharBuffer): Int = fileReader.read(buffer)
+  override def skip(n: Long): Long = fileReader.skip(n)
 
-  def readAll(): String = {
-    var ch: Int = -1
-    val buffer = new java.lang.StringBuilder
-    while({ch = read(); ch} != -1) {
-      buffer.append(ch.asInstanceOf[Char])
-    }
-    new String(buffer)
-  }
+  override def ready(): Boolean = fileReader.ready()
 
-  def readLines(): Seq[String] = {
-    val lines = mutable.Buffer[String]()
-    var line: String = null
-    while({line = readLine(); line} != null) {
-      lines += line
-    }
-    lines.toSeq
-  }
+  override def mark(readAheadLimit: Int): Unit = fileReader.mark(readAheadLimit)
 
-  def markSupported(): Boolean = fileReader.markSupported()
-
-  def skip(n: Long): Long = fileReader.skip(n)
-
-  def ready(): Boolean = fileReader.ready()
-
-  def mark(readAheadLimit: Int): Unit = fileReader.mark(readAheadLimit)
-
-  def close(): Unit = fileReader.close()
-
+  override def close(): Unit = fileReader.close()
 }
