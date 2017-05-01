@@ -28,7 +28,7 @@ libraryDependencies ++= Seq(
 
 
 initialCommands in console += {
-  Iterator().map("import "+).mkString("\n")
+  Iterator("com.github.scaruby._").map("import "+).mkString("\n")
 }
 
 publishTo := {

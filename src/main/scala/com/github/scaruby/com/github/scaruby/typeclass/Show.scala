@@ -1,7 +1,8 @@
-package com.github.scaruby
+package com.github.scaruby.com.github.scaruby.typeclass
 
 /**
   * A type class which translate a value of type A int a String
+  *
   * @tparam A
   */
 abstract class Show[A] {
