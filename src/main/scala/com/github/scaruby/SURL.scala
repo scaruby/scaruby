@@ -6,5 +6,5 @@ class SURL private (val jURL: URL) {
 }
 
 object SURL {
-  def apply(urlString: String): SURL = new SURL(new URL(urlString))
+  def apply(url: String): SURL = new SURL(new URL(url))
 }
