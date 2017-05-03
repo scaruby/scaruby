@@ -2,7 +2,7 @@ package com.github
 
 import java.util.Locale
 
-import com.github.scaruby.com.github.scaruby.typeclass.CommandAdapter
+import com.github.scaruby.com.github.scaruby.typeclass.CommandSequenceFactory
 
 import scala.language.reflectiveCalls
 import scala.sys.process.Process
@@ -17,8 +17,8 @@ package object scaruby {
       resource.close()
     }
   }
-  def system[A:CommandAdapter](command: A, cwd: SFile = SFile("."), extraEnv: Seq[(String, String)] = Seq.empty): String = {
-    val adapter = implicitly[CommandAdapter[A]]
-    Process(adapter.adapt(command), cwd.file, extraEnv:_*).!!
+  def system[A:CommandSequenceFactory](command: A, cwd: SFile = SFile("."), extraEnv: Seq[(String, String)] = Seq.empty): String = {
+    val adapter = implicitly[CommandSequenceFactory[A]]
+    Process(adapter.newInstanceFrom(command), cwd.file, extraEnv:_*).!!
   }
 }
