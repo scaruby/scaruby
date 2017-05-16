@@ -9,9 +9,9 @@ abstract class SInputStream[A <: { def close(): Unit}] extends SClosableResource
 
   def skip(n: Long): Long
 
-  def readTo(b: Array[Byte]): Int
+  def readInto(b: Array[Byte]): Int
 
-  def readToWithOffset(b: Array[Byte], offset: Int, length: Int): Int
+  def readIntoWithOffset(b: Array[Byte], offset: Int, length: Int): Int
 
   def read(): Int
 

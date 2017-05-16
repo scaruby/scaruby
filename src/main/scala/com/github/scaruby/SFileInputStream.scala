@@ -15,9 +15,9 @@ class SFileInputStream(path: String) extends SInputStream[SFileInputStream] {
 
   override def skip(n: Long): Long = fileStream.skip(n)
 
-  override def readTo(b: Array[Byte]): Int = fileStream.read(b)
+  override def readInto(b: Array[Byte]): Int = fileStream.read(b)
 
-  override def readToWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
+  override def readIntoWithOffset(b: Array[Byte], offset: Int, length: Int): Int = fileStream.read(b, offset, length)
 
   override def read(): Int = fileStream.read()
 
