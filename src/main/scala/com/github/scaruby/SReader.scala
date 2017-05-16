@@ -10,9 +10,7 @@ abstract class SReader[A <: { def close(): Unit}] extends SClosableResource[A] {
 
   def read(): Int
 
-  def readIntoWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int
-
-  def readInto(buffer: CharBuffer): Int
+  def readInto(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int
 
   def linesIterator(): Iterator[String] = {
     Iterator.continually(readLine()).takeWhile(_ != null)

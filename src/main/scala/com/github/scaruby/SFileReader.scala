@@ -15,9 +15,7 @@ class SFileReader(path: String, encoding: String = DefaultEncoding) extends SRea
 
   override def read(): Int = fileReader.read()
 
-  override def readIntoWithOffset(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
-
-  override def readInto(buffer: CharBuffer): Int = fileReader.read(buffer)
+  override def readInto(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Int = fileReader.read(buffer, offset, length)
 
   override def close(): Unit = fileReader.close()
 }
