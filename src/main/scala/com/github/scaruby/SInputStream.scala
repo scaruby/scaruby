@@ -3,15 +3,7 @@ package com.github.scaruby
 import scala.collection.mutable
 
 abstract class SInputStream[A <: { def close(): Unit}] extends SClosableResource[A] {
-  def reset(): Unit
-
-  def mark(limit: Int): Unit
-
-  def skip(n: Long): Long
-
-  def readInto(b: Array[Byte]): Int
-
-  def readIntoWithOffset(b: Array[Byte], offset: Int, length: Int): Int
+  def readInto(b: Array[Byte])(implicit offset: Int = 0, length: Int = b.length): Int
 
   def read(): Int
 
@@ -23,8 +15,6 @@ abstract class SInputStream[A <: { def close(): Unit}] extends SClosableResource
     }
     buffer.toArray
   }
-
-  def markSupported(): Boolean
 
   def close(): Unit
 

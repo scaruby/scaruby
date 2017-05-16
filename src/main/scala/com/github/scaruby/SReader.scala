@@ -6,8 +6,6 @@ import scala.collection.immutable.Stream
 import scala.collection.mutable
 
 abstract class SReader[A <: { def close(): Unit}] extends SClosableResource[A] {
-  def reset(): Unit
-
   def readLine(): String
 
   def read(): Int
@@ -37,14 +35,6 @@ abstract class SReader[A <: { def close(): Unit}] extends SClosableResource[A] {
     }
     lines.toSeq
   }
-
-  def markSupported(): Boolean
-
-  def skip(n: Long): Long
-
-  def ready(): Boolean
-
-  def mark(readAheadLimit: Int): Unit
 
   def close(): Unit
 }
