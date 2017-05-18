@@ -12,11 +12,11 @@ abstract class SOutputStream extends SClosableResource[SOutputStream] {
 
   /**
     * Writes `buffer` using `offset` and `length`
-    * @param buffer to be written
-    * @param offset start position
-    * @param length length
+    * @param buffer to be written.
+    * @param offset start position.  This can be omitted.
+    * @param length length.  This can be omitted.
     */
-  def writeWithOffset(buffer: Array[Byte], offset: Int, length: Int): Unit
+  def writeWith(buffer: Array[Byte])(implicit offset: Int = 0, length: Int = buffer.length): Unit
 
   /**
     * Flushes this stream.
