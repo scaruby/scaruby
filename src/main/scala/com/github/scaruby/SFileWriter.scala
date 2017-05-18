@@ -41,22 +41,34 @@ class SFileWriter(path: String, encoding: String = DefaultEncoding) extends SWri
   /**
     * @inheritdoc
     */
-  override def format(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter = fileWriter.format(l, format, args)
+  override def format(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): this.type  = {
+    fileWriter.format(l, format, args)
+    this
+  }
 
   /**
     * @inheritdoc
     */
-  override def printf(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter = fileWriter.printf(l, format, args)
+  override def printf(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): this.type  = {
+    fileWriter.printf(l, format, args)
+    this
+  }
 
   /**
     * @inheritdoc
     */
-  override def append(cseq: CharSequence)(implicit start: Int = 0, end: Int = cseq.length()): PrintWriter = fileWriter.append(cseq)
+  override def append(cseq: CharSequence)(implicit start: Int = 0, end: Int = cseq.length()): this.type  = {
+    fileWriter.append(cseq)
+    this
+  }
 
   /**
     * @inheritdoc
     */
-  override def appendChar(c: Char): PrintWriter = fileWriter.append(c)
+  override def appendCharacter(c: Char): this.type = {
+    fileWriter.append(c)
+    this
+  }
 
   /**
     * @inheritdoc
@@ -75,7 +87,7 @@ class SFileWriter(path: String, encoding: String = DefaultEncoding) extends SWri
   /**
     * @inheritdoc
     */
-  override def eol(): Unit = fileWriter.println()
+  override def printEOL(): Unit = fileWriter.println()
 
   /**
     * @inheritdoc
