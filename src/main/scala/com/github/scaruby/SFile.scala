@@ -23,7 +23,7 @@ class SFile private (val file: File) {
 
   def executable_=(canExecutable: Boolean): Boolean = file.setExecutable(canExecutable)
 
-  def executableByOwnerOnly_=(executable: Boolean, ownerOnly: Boolean): Boolean = file.setExecutable(executable, ownerOnly)
+  def setExecutableByOwnerOnly(executable: Boolean, ownerOnly: Boolean): Boolean = file.setExecutable(executable, ownerOnly)
 
   def readable: Boolean = file.canRead
 
@@ -41,7 +41,7 @@ class SFile private (val file: File) {
 
   def writable_=(canWritable: Boolean): Boolean = file.setWritable(canWritable)
 
-  def writableByOwnerOnly_=(canWritable: Boolean, ownerOnly: Boolean): Boolean = file.setWritable(canWritable, ownerOnly)
+  def setWritableByOwnerOnly(canWritable: Boolean, ownerOnly: Boolean): Boolean = file.setWritable(canWritable, ownerOnly)
 
   def length: Long = file.length
 
