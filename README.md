@@ -7,7 +7,18 @@
 [![Reference Status](https://www.versioneye.com/java/com.github.scaruby:scaruby_2.11/reference_badge.svg?style=flat)](https://www.versioneye.com/java/com.github.scaruby:scaruby_2.11/references)
 
 
-Scaruby is not a thin layer of `java.io` but a thick layer.  Users don't need to know the detail of `java.io`.
+Scaruby is not a thin layer of `java.io` but a thick layer of it.  Users of Scaruby don't need to 
+know the detail of `java.io`.  Instead, Scaruby provides the way to do file I/O independently.
+
+## Features
+
+* Builtin loan pattern
+* Simple operation can be done by simple method call
+* Base64 encode/decode 
+* Every SReader/Swriter can be used in `for-expression`, which is implemented as `foreach` method.
+* Support reading text/binary content from SURL
+* No overloading! Instead, use type classes or default arguments
+* Additional features will be added as needed
 
 ## Usage
 
@@ -36,4 +47,12 @@ val input = "Hello, World!"
 val encoded = SBase64.encode64(input.getBytes("UTF-8"))
 val decoded = new String(SBase64.decode64(encoded), "UTF-8")
 assert(input == decoded)
+```
+
+```scala
+import com.github.scaruby._
+val content = for { 
+  r <- SURL("https://srad.jp/").openReader
+} r.readAl
+println(content)
 ```
