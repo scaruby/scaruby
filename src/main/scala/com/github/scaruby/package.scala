@@ -21,4 +21,5 @@ package object scaruby {
     val adapter = implicitly[CommandSequenceFactory[A]]
     Process(adapter.newInstanceFrom(command), cwd.file, extraEnv:_*).!!
   }
+
 }

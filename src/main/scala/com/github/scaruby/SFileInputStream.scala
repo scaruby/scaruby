@@ -1,11 +1,15 @@
 package com.github.scaruby
 
-import java.io.{BufferedInputStream, FileInputStream}
+import java.io.{BufferedInputStream, File, FileInputStream}
 
 import scala.collection.mutable
 
-class SFileInputStream(path: String) extends SInputStream {
+class SFileInputStream private[scaruby](path: File) extends SInputStream {
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
+
+  def this(path: String) {
+    this(new File(path))
+  }
 
   override def self: SFileInputStream = this
 

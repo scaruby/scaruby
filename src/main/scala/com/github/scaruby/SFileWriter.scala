@@ -1,12 +1,16 @@
 package com.github.scaruby
 
-import java.io.{FileOutputStream, OutputStreamWriter, PrintWriter}
+import java.io.{File, FileOutputStream, OutputStreamWriter, PrintWriter}
 import java.util.Locale
 
 import com.github.scaruby.typeclass.Show
 
-class SFileWriter(path: String, encoding: String = DefaultEncoding) extends SWriter {
+class SFileWriter private[scaruby](path: File, encoding: String = DefaultEncoding) extends SWriter {
   private[this] val fileWriter: PrintWriter = new PrintWriter(new OutputStreamWriter(new FileOutputStream(path), encoding))
+
+  def this(path: String, encoding: String) {
+    this(new File(path), encoding)
+  }
 
   /**
     * @inheritdoc

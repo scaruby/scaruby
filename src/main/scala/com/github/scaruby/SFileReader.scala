@@ -1,13 +1,17 @@
 package com.github.scaruby
 
-import java.io.{BufferedReader, FileInputStream, InputStreamReader}
+import java.io.{BufferedReader, File, FileInputStream, InputStreamReader}
 import java.nio.CharBuffer
 
 import scala.collection.mutable
 import scala.collection.immutable.Stream
 
-class SFileReader(path: String, encoding: String = DefaultEncoding) extends SReader {
+class SFileReader private[scaruby](path: File, encoding: String = DefaultEncoding) extends SReader {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
+
+  def this(path: String, encoding: String) {
+    this(new File(path), encoding)
+  }
 
   /**
     * @inheritdoc
