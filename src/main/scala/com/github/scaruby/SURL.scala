@@ -33,6 +33,22 @@ class SURL private (val jURL: URL) {
   }
 
   /**
+    * Read all texts from this file
+    * @return content
+    */
+  def read(): String = for {
+    reader <- this.openReader()
+  } reader.readAll()
+
+  /**
+    * Read lines from this file
+    * @return a sequence of lines
+    */
+  def readLines(): Seq[String] = for {
+    reader <- this.openReader()
+  } reader.readLines()
+
+  /**
     * Opens this `SURL`, calls the `block` with opened `SInputStream`, and closes it.
     * @param block called with `SInputStream`
     * @tparam B return type of the `block`

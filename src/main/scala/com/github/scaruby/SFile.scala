@@ -102,6 +102,29 @@ class SFile private (val file: File) {
   def open(): SInputStream = this.openInputStream()
 
   /**
+    * Read all texts from this file
+    * @return the content of this file
+    */
+  def read(): String = for {
+    reader <- this.openReader()
+  } reader.readAll()
+
+  /**
+    * Read lines from this file
+    * @return the sequence of lines
+    */
+  def readLines(): Seq[String] = for {
+    reader <- this.openReader()
+  } reader.readLines()
+
+  /**
+    * Write all texts to this file
+    */
+  def write(content: String): Unit = for {
+    writer <- this.openWriter()
+  } writer.print(content)
+
+  /**
     * Opens this `SURL`, calls the `block` with opened `SInputStream`, and closes it.
     * @param block called with `SInputStream`
     * @tparam B return type of the `block`
@@ -199,12 +222,40 @@ object SFile {
     reader.readLines()
   }
 
+  /**
+    * Reads from the file represented by `path`
+    * @param path points to a file
+    */
   def readBytes(path: String): Array[Byte] = openInputStream(path){ in =>
     in.readAll()
   }
 
+  /**
+    * Writes `content` to the file represented by `path`
+    * @param path points to a file
+    */
   def write(path: String, content: String, encoding: String = DefaultEncoding): Unit = openWriter(path, encoding){writer =>
     writer.writeString(content)
+  }
+
+  /**
+    * Writes `buffer` to the file represented by `path`
+    * @param path points to a file
+    * @param buffer a byte buffer to be written
+    */
+  def write(path: String, buffer: Array[Byte]): Unit = openOutputStream(path){stream =>
+    stream.writeAll(buffer)
+  }
+
+  /**
+    * Writes `lines` to the file represented by `path`
+    * @param path points to a file
+    * @param lines a sequence of lines
+    */
+  def writeLines(path: String, lines: Seq[String], encoding: String = DefaultEncoding): Unit = openWriter(path,encoding){writer =>
+    for {
+      line <- lines
+    } writer.println(line)
   }
 }
 
