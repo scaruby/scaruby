@@ -18,7 +18,7 @@ Add the following lines to your build.sbt:
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-libraryDependency += "com.github.scaruby" %% "scaruby" % "0.1-SNAPSHOT"
+libraryDependency += "com.github.scaruby" %% "scaruby" % "0.1"
 ```
 
 and you can use Scaruby like the following after importing the package `com.github.scaruby._`:
