@@ -4,7 +4,7 @@ import java.io.{BufferedInputStream, FileInputStream}
 
 import scala.collection.mutable
 
-class SFileInputStream(path: String) extends SInputStream[SFileInputStream] {
+class SFileInputStream(path: String) extends SInputStream {
   private[this] val fileStream: BufferedInputStream = new BufferedInputStream(new FileInputStream(path))
 
   override def self: SFileInputStream = this

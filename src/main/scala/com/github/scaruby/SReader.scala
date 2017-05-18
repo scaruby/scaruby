@@ -8,9 +8,8 @@ import scala.collection.mutable
 /**
   * An abstract character stream.  After using this object, `close()` method should be called.
   *
-  * @tparam A this should be self, a concrete subtype of `SReader`
   */
-abstract class SReader[A <: { def close(): Unit}] extends SClosableResource[A] {
+abstract class SReader extends SClosableResource[SReader] {
   /**
     * Reads a line from this reader.
     */

@@ -4,7 +4,7 @@ import java.io.InputStream
 import java.net.URL
 
 class SURL private (val jURL: URL) {
-  private class SURLInputStream(inputStream: InputStream) extends SInputStream[SURLInputStream] {
+  private class SURLInputStream(inputStream: InputStream) extends SInputStream {
 
     override def readInto(buffer: Array[Byte])(implicit offset: Int = 0, length: Int = buffer.length): Int = inputStream.read(buffer, offset, length)
 
