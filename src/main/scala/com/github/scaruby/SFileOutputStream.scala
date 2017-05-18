@@ -15,7 +15,9 @@ class SFileOutputStream(path: String) extends SOutputStream {
   /**
     * @inheritdoc
     */
-  override def writeWithOffset(b: Array[Byte], offset: Int, length: Int): Unit = fileStream.write(b, offset, length)
+  override def writeWith(buffer: Array[Byte])(implicit offset: Int = 0, length: Int = buffer.length): Unit = {
+    fileStream.write(buffer, offset, length)
+  }
 
   /**
     * @inheritdoc
