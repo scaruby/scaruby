@@ -1,6 +1,9 @@
 package com.github.scaruby
 
-abstract class SOutputStream[A <: { def close(): Unit}] extends SClosableResource[A] {
+/**
+  * An object to write bytes to a stream
+  */
+abstract class SOutputStream extends SClosableResource[SOutputStream] {
   /**
     * Write one byte from `byte`
     * @param byte to be written

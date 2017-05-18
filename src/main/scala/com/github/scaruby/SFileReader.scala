@@ -6,7 +6,7 @@ import java.nio.CharBuffer
 import scala.collection.mutable
 import scala.collection.immutable.Stream
 
-class SFileReader(path: String, encoding: String = DefaultEncoding) extends SReader[SFileReader] {
+class SFileReader(path: String, encoding: String = DefaultEncoding) extends SReader {
   private[this] val fileReader = new BufferedReader(new InputStreamReader(new FileInputStream(path), encoding))
 
   /**

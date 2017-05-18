@@ -2,7 +2,7 @@ package com.github.scaruby
 
 import scala.collection.mutable
 
-abstract class SInputStream[A <: { def close(): Unit}] extends SClosableResource[A] {
+abstract class SInputStream extends SClosableResource[SInputStream] {
   def readInto(b: Array[Byte])(implicit offset: Int = 0, length: Int = b.length): Int
 
   /**

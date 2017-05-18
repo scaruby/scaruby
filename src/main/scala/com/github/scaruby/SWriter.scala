@@ -6,9 +6,9 @@ import java.util.Locale
 import com.github.scaruby.typeclass.Show
 
 /**
-  * Created by Mizushima on 2017/05/01.
+  * An object to write characters to a stream.
   */
-abstract class SWriter[A <: { def close(): Unit}] extends SClosableResource[A] {
+abstract class SWriter extends SClosableResource[SWriter] {
 
   def hasError(): Boolean
 

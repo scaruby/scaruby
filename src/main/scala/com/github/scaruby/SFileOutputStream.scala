@@ -2,7 +2,7 @@ package com.github.scaruby
 
 import java.io.{BufferedOutputStream, FileOutputStream}
 
-class SFileOutputStream(path: String) extends SOutputStream[SFileOutputStream] {
+class SFileOutputStream(path: String) extends SOutputStream {
   private[this] val fileStream = new BufferedOutputStream(new FileOutputStream(path))
 
   override def self: SFileOutputStream = this
