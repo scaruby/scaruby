@@ -1,6 +1,6 @@
 package com.github.scaruby
 
-import java.io.{File, FileFilter, FilenameFilter}
+import java.io._
 import java.net.{URI, URL}
 import java.nio.file.Path
 
@@ -98,6 +98,69 @@ class SFile private (val file: File) {
   def setReadOnly(): Boolean = file.setReadOnly()
 
   def mkdir(): Boolean = file.mkdir()
+
+  def open(): SInputStream = this.openInputStream()
+
+  /**
+    * Opens this `SURL`, calls the `block` with opened `SInputStream`, and closes it.
+    * @param block called with `SInputStream`
+    * @tparam B return type of the `block`
+    * @return the result of the invocation of `block`
+    */
+  def openInputStreamWith[B](block: SInputStream => B): B = using(new SFileInputStream(this.file))(block)
+
+  /**
+    * Opens this `SURL` and returns a `SInputStream` bounded to it.
+    * @return `SInputStream` bounded to the URL
+    */
+  def openInputStream(): SInputStream = new SFileInputStream(this.file)
+
+  /**
+    * Opens this `SURL` and returns a `SOutputStream` bounded to it.
+    * @return `SOutputStream` bounded to the URL
+    */
+  def openOutputStream(): SOutputStream = new SFileOutputStream(this.file)
+
+  /**
+    * Opens this `SURL`, calls the `block` with opened `SOutputStream`, and closes it.
+    * @param block called with `SOutputStream`
+    * @tparam B return type of the `block`
+    * @return the result of the invocation of `block`
+    */
+  def openOutputStreamWith[B](block: SOutputStream => B): B = using(new SFileOutputStream(this.file))(block)
+
+  /**
+    * Opens this `SURL`, calls the `block` with opened `SReader`, and closes it.
+    * @param block called with `SReader`
+    * @tparam B return type of the `block`
+    * @return the result of the invocation of `block`
+    */
+  def openReaderWith[B](block: SReader => B): B = {
+    using(new SFileReader(this.file))(block)
+  }
+
+  /**
+    * Opens this `SURL` and returns a `SReader` bounded to it.
+    * @return `SReader` bounded to the URL
+    */
+  def openReader(): SReader = new SFileReader(this.file)
+
+  /**
+    * Opens this `SURL`, calls the `block` with opened `SWriter`, and closes it.
+    * @param block called with `SWriter`
+    * @tparam B return type of the `block`
+    * @return the result of the invocation of `block`
+    */
+  def openWriterWith[B](block: SWriter => B): B = {
+    using(new SFileWriter(this.file))(block)
+  }
+
+  /**
+    * Opens this `SURL` and returns a `SWriter` bounded to it.
+    * @return `SWriter` bounded to the URL
+    */
+  def openWriter(): SWriter = new SFileWriter(this.file)
+
 }
 
 object SFile {
