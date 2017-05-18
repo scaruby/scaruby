@@ -10,29 +10,92 @@ import com.github.scaruby.typeclass.Show
   */
 abstract class SWriter extends SClosableResource[SWriter] {
 
+  /**
+    * Returns whether this has error or not
+    */
   def hasError(): Boolean
 
-  def write(buf: Array[Char])(implicit off: Int = 0, len: Int = buf.length): Unit
+  /**
+    * Writes `buffer` to this writer using `offset` and `length`
+    * @param buffer to be written
+    * @param offset offset of buffer, which can be omitted.
+    * @param length length to be written, which is less than buffer.length, which can be omitted.
+    */
+  def write(buffer: Array[Char])(implicit offset: Int = 0, length: Int = buffer.length): Unit
 
-  def writeChar(c: Int): Unit
+  /**
+    * Writes character as Char to this writer
+    */
+  def writeChar(character: Int): Unit
 
-  def writeString(s: String)(implicit off: Int = 0, len: Int = s.length): Unit
+  /**
+    * Writes `string` to this writer using `offset` adn `length`
+    * @param string to be written
+    * @param offset offset of buffer, which can be omitted.
+    * @param length length to be written, which is less than buffer.length, which can be omitted.
+    */
+  def writeString(string: String)(implicit offset: Int = 0, length: Int = string.length): Unit
 
-  def format(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter
+  /**
+    * Writes a formatted string to this writer using specified format string and arguments.
+    * @param format format string
+    * @param args used by format
+    * @param locale locale
+    * @return this
+    */
+  def format(format: String, args: AnyRef*)(implicit locale: Locale = DefaultLocale): this.type
 
-  def printf(format: String, args: AnyRef*)(implicit l: Locale = DefaultLocale): PrintWriter
+  /**
+    * Writes a formatted string to this writer using specified format string and arguments.
+    * @param format format string
+    * @param args used by format
+    * @param locale locale
+    * @return this
+    */
+  def printf(format: String, args: AnyRef*)(implicit locale: Locale = DefaultLocale): this.type
 
-  def append(cseq: CharSequence)(implicit start: Int = 0, end: Int = cseq.length()): PrintWriter
+  /**
+    * Writes a `sequence` to this writer
+    * @param sequence
+    * @param start start index of sequence to be written
+    * @param end end index of sequence to be written
+    * @return this
+    */
+  def append(sequence: CharSequence)(implicit start: Int = 0, end: Int = sequence.length): this.type
 
-  def appendChar(c: Char): PrintWriter
+  /**
+    * Writes a `character` to this writer
+    * @param character to be written
+    * @return this
+    */
+  def appendCharacter(character: Char): this.type
 
-  def print[A:Show](x: A): Unit
+  /**
+    * Converts a `value` to a String using `Show` type classes and print the String.
+    * @param value to be converted
+    * @tparam A type parameter of the value
+    */
+  def print[A:Show](value: A): Unit
 
-  def println[A:Show](x: A): Unit
+  /**
+    * Converts a `value` to a String using `Show` type classes, prints the String, and prints EOL.
+    * @param value to be converted
+    * @tparam A type parameter of the value
+    */
+  def println[A:Show](value: A): Unit
 
-  def eol(): Unit
+  /**
+    * Prints EOL.
+    */
+  def printEOL(): Unit
 
+  /**
+    * Flushes this writer
+    */
   def flush(): Unit
 
+  /**
+    * Closes this writer.  After closing,  any method must not be called.
+    */
   def close(): Unit
 }
