@@ -8,7 +8,7 @@ import scala.language.reflectiveCalls
 import scala.sys.process.Process
 
 package object scaruby {
-  final val DefaultEncoding: String = System.getProperty("file.encoding")
+  final val DefaultEncoding: String = "UTF-8"
   final val DefaultLocale: Locale = Locale.getDefault
   def using[A <: { def close(): Unit }, B](resource: A)(block: A => B): B = {
     try {
