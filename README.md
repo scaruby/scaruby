@@ -53,6 +53,6 @@ assert(input == decoded)
 import com.github.scaruby._
 val content = for { 
   r <- SURL("https://srad.jp/").openReader
-} r.readAl
+} r.readAll
 println(content)
 ```
