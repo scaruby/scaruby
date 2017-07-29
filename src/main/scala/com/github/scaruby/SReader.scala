@@ -12,11 +12,13 @@ import scala.collection.mutable
 abstract class SReader extends SClosableResource[SReader] {
   /**
     * Reads a line from this reader.
+    * @return a line to be read. If it returns null, it means EOF.
     */
   def readLine(): String
 
   /**
     * Reads one Char from this reader.  If the reader is at the end of file, return -1.
+    * @return one character to bo read.  If it returns -1, it means EOF.
     */
   def read(): Int
 
