@@ -10,12 +10,30 @@ class SFileSpec extends FunSpec with DiagrammedAssertions {
     }
   }
 
+  describe("SFile#read()") {
+    it("Test1.txt") {
+      val test1 = SFile("txt/Test1.txt").read()
+      assert("Test1" === test1)
+    }
+  }
+
   describe("SFile.write()") {
     it("temprary file") {
       SFile.withTempFile{f =>
         val content = "Write Test"
         SFile.write(f.path, content)
         val result = SFile.read(f.path)
+        assert(content === result)
+      }
+    }
+  }
+
+  describe("SFile#write()") {
+    it("temprary file") {
+      SFile.withTempFile{f =>
+        val content = "Write Test"
+        f.write(content)
+        val result = f.read()
         assert(content === result)
       }
     }
