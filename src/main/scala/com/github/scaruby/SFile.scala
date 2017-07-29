@@ -9,7 +9,10 @@ class SFile private (val file: File) {
     this(new File(path))
   }
 
-  override def equals(obj: scala.Any): Boolean = file.equals(obj)
+  override def equals(obj: scala.Any): Boolean = obj match {
+    case that:SFile => file.equals(that.file)
+    case _ => false
+  }
 
   override def hashCode(): Int = file.hashCode()
 
