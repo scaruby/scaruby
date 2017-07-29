@@ -2,9 +2,9 @@ organization := "com.github.scaruby"
 
 name := "scaruby"
 
-scalaVersion := "2.12.1"
+scalaVersion := "2.12.3"
 
-crossScalaVersions := Seq("2.11.8", "2.12.1")
+crossScalaVersions := Seq("2.11.11", scalaVersion.value)
 
 publishMavenStyle := true
 
