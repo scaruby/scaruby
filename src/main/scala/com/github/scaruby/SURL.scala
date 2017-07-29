@@ -3,7 +3,7 @@ package com.github.scaruby
 import java.io.{BufferedReader, InputStream, InputStreamReader, Reader}
 import java.net.URL
 
-class SURL private (val jURL: URL) {
+class SURL private (val jURL: URL) extends SSource {
   private class SURLInputStream(inputStream: InputStream) extends SInputStream {
 
     override def readInto(buffer: Array[Byte])(implicit offset: Int = 0, length: Int = buffer.length): Int = inputStream.read(buffer, offset, length)

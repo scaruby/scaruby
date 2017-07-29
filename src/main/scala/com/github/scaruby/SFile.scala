@@ -1,10 +1,8 @@
 package com.github.scaruby
 
 import java.io._
-import java.net.{URI, URL}
-import java.nio.file.Path
 
-class SFile private (val file: File) {
+class SFile private (val file: File) extends SSource {
   def this(path: String) {
     this(new File(path))
   }
