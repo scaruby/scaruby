@@ -5,9 +5,9 @@ import java.util.Base64
 object SBase64 {
   def encode(source: Array[Byte], withoutPadding: Boolean = false): String = {
     val encoder = if(withoutPadding) {
-      Base64.getEncoder
-    } else {
       Base64.getEncoder.withoutPadding()
+    } else {
+      Base64.getEncoder
     }
     encoder.encodeToString(source)
   }
