@@ -1,5 +1,6 @@
 import sbtrelease._
 import ReleaseStateTransformations._
+import scala.sys.process._
 
 val sonatypeURL = "https://oss.sonatype.org/service/local/repositories/"
 
@@ -21,7 +22,7 @@ val updateReadme: State => State = { state =>
   IO.write(readmeFile, newReadme)
   val git = new Git(extracted get baseDirectory)
   git.add(readme) ! state.log
-  git.commit("update " + readme) ! state.log
+  git.commit("update " + readme, false) ! state.log
   "git diff HEAD^" ! state.log
   state
 }
@@ -44,12 +45,12 @@ releaseProcess := Seq[ReleaseStep](
     val extracted = Project extract state
     extracted.runAggregated(PgpKeys.publishSigned in Global in extracted.get(thisProjectRef), state)
     },
-    enableCrossBuild = false
+    enableCrossBuild = true
   ),
   setNextVersion,
   commitNextVersion,
   updateReadmeProcess,
-  ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+  releaseStepCommand("sonatypeReleaseAll"),
   pushChanges
 )
 
