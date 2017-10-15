@@ -70,4 +70,35 @@ package object collection {
       }
     }
   }
+
+  implicit class RichMap[K, V](val self: scala.collection.Map[K, V]) extends AnyVal {
+    /**
+      * Return a Seq consist of found values.
+        Values ordering follows keys ordering.
+      */
+    def valuesOf(keys: K*): Seq[V] = {
+      var values: List[V] = Nil
+      keys.foreach{key =>
+        self.get(key).foreach{value =>
+          values = value :: values
+        }
+      }
+      values.reverse
+    }
+
+    /**
+      * Find a key which corresponds value and return the wrapped value or None.
+      * If the number of key >= 1, It is unspecified that which key is selected.
+      * @param value
+      * @return
+      */
+    def keyOf(value: V): Option[K] = self.find{ case (k, v) => v == value}.map{_._1}
+
+    /**
+      * Return the new Map that swap key and value.
+      * If the several key is bound to one value, the result is unknown
+      * @return
+      */
+    def invert: scala.collection.Map[V, K] = self.map{ case (k, v) => (v, k) }
+  }
 }
