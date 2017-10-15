@@ -2,7 +2,7 @@ package com.github
 
 import java.util.Locale
 
-import com.github.scaruby.com.github.scaruby.typeclass.CommandSequenceFactory
+import com.github.scaruby.typeclass.CommandSequenceFactory
 
 import scala.language.reflectiveCalls
 import scala.sys.process.Process
