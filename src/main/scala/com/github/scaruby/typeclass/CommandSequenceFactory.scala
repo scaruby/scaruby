@@ -1,4 +1,4 @@
-package com.github.scaruby.com.github.scaruby.typeclass
+package com.github.scaruby.typeclass
 
 abstract class CommandSequenceFactory[T] {
   def newInstanceFrom(source: T): Seq[String]
