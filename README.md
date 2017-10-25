@@ -34,20 +34,26 @@ libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.4"
 
 and you can use Scaruby like the following after importing the package `com.github.scaruby._`:
 
+Read from file
+
 ```scala
 import com.github.scaruby._
 
 val content = SFile.read("file.txt")
 ```
 
+Base64 encode/decode
+
 ```scala
 import com.github.scaruby._
 
 val input = "Hello, World!"
-val encoded = SBase64.encode64(input.getBytes("UTF-8"))
-val decoded = new String(SBase64.decode64(encoded), "UTF-8")
+val encoded = SBase64.encode(input.getBytes("UTF-8"))
+val decoded = new String(SBase64.decode(encoded), "UTF-8")
 assert(input == decoded)
 ```
+
+Read from URL
 
 ```scala
 import com.github.scaruby._
@@ -55,4 +61,10 @@ val content = for {
   r <- SURL("https://srad.jp/").openReader
 } r.readAll
 println(content)
+```
+
+```scala
+import com.github.scaruby.collection._
+val seq = Seq(1.0, 2.0, 3.0)
+println(seq.average) // 6.0
 ```
