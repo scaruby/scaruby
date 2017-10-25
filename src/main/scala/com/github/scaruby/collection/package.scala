@@ -71,6 +71,18 @@ package object collection {
     }
   }
 
+  implicit class RichSeq[A](val self: scala.collection.Seq[A]) extends AnyVal {
+    /**
+      * Calculate the average of self.
+      * @param ev an instance of type class `Fractional[B]`
+      * @return the average of self
+      */
+    def average(implicit ev: Fractional[A]): A = {
+      val length = self.length
+      ev.div(self.foldLeft(ev.zero){(acc, e) => ev.plus(acc, e)}, ev.fromInt(length))
+    }
+  }
+
   implicit class RichMap[K, V](val self: scala.collection.Map[K, V]) extends AnyVal {
     /**
       * Return a Seq consist of found values.
