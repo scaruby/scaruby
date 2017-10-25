@@ -32,9 +32,9 @@ resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repos
 libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.4"
 ```
 
-and you can use Scaruby like the following after importing the package `com.github.scaruby._`:
+and you can use Scaruby like the following:
 
-Read from file
+Read from text file:
 
 ```scala
 import com.github.scaruby._
@@ -42,7 +42,22 @@ import com.github.scaruby._
 val content = SFile.read("file.txt")
 ```
 
-Base64 encode/decode
+Read lines from text file:
+
+```scala
+import com.github.scaruby._
+
+val lines = SFile.readLines("file.txt")
+```
+
+Read from binary file:
+
+```scala
+import com.github.scaruby._
+val content = SFile.readBytes("files.bin")
+```
+
+Base64 encode/decode:
 
 ```scala
 import com.github.scaruby._
@@ -53,7 +68,7 @@ val decoded = new String(SBase64.decode(encoded), "UTF-8")
 assert(input == decoded)
 ```
 
-Read from URL
+Read from URL:
 
 ```scala
 import com.github.scaruby._
@@ -63,8 +78,10 @@ val content = for {
 println(content)
 ```
 
+Calculate the average:
+
 ```scala
 import com.github.scaruby.collection._
 val seq = Seq(1.0, 2.0, 3.0)
-println(seq.average) // 6.0
+assert(6.0 == seq.average)
 ```
