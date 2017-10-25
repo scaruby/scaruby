@@ -17,7 +17,7 @@ know the detail of `java.io`.  Instead, Scaruby provides the way to do file I/O 
 * Base64 encode/decode 
 * Every SReader/Swriter can be used in `for-expression`, which is implemented as `foreach` method.
 * Support reading text/binary content from SURL
-* No overloading! Instead, use type classes or default arguments
+* Minimize overloading! Instead, use type classes or default arguments
 * Additional features will be added as needed
 
 ## Usage
