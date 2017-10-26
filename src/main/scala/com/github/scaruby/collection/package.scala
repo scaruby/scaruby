@@ -139,6 +139,42 @@ package object collection {
       val length = self.length
       ev.div(self.foldLeft(ev.zero){(acc, e) => ev.plus(acc, e)}, ev.fromInt(length))
     }
+
+    /**
+      * This method is synonym of `intersect`.
+      * @param that the sequence of elements to intersect with.
+      * @return the result of `self` intersect `that`
+      */
+    def &(that: scala.collection.Seq[A]): scala.collection.Seq[A] = {
+      self.intersect(that)
+    }
+
+    /**
+      * This method is synonym of `intersect`.
+      * @param that the sequence of elements to intersect with.
+      * @return the result of `self` intersect `that`
+      */
+    def ∩(that: scala.collection.Seq[A]): scala.collection.Seq[A] = {
+      self.intersect(that)
+    }
+
+    /**
+      * This method is synonym of `union`.
+      * @param that the sequence to add.
+      * @return the result of `self` union `that`
+      */
+    def |(that: scala.collection.Seq[A]): scala.collection.Seq[A] = {
+      self.union(that)
+    }
+
+    /**
+      * This method is synonym of `union`.
+      * @param that the sequence to add.
+      * @return the result of `self` union `that`
+      */
+    def ∪(that: scala.collection.Seq[A]): scala.collection.Seq[A] = {
+      self.union(that)
+    }
   }
 
   implicit class RichMap[K, V](val self: scala.collection.Map[K, V]) extends AnyVal {
