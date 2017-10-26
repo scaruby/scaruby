@@ -31,5 +31,22 @@ class RichBufferSpec extends FunSpec with DiagrammedAssertions {
       buf(0 to 2) = 10
       assert(List(10, 10, 10, 4, 5) == buf.toList)
     }
+    it("push(1)") {
+      val buf = source.clone()
+      buf.push(3)
+      assert(List(1, 2, 3, 4, 5, 3) == buf.toList)
+    }
+    it("top") {
+      val buf = source.clone()
+      val top = buf.top
+      assert(5 == top)
+    }
+    it("pop()") {
+      val buf = source.clone()
+      val top = buf.pop()
+      val rest = buf
+      assert(5 == top)
+      assert(List(1, 2, 3, 4) == rest.toList)
+    }
   }
 }
