@@ -52,7 +52,34 @@ package object collection {
     }
 
     /**
+      * This method is synonym of `delete_if`
+      * @param predicate applied to each element
+      * @return self
+      */
+    def filterNot_!(predicate: A => Boolean): self.type = {
+      deleteIf_!(predicate)
+    }
+
+    /**
+      * Remove all elements that don't satisfy the `predicate`.
+      * Note that this method is destructive
+      * @param predicate applied to each element
+      * @return self
+      */
+    def filter_!(predicate: A => Boolean): self.type = {
+      var i = self.size - 1
+      while(i >= 0) {
+        if(!predicate(self(i))) {
+          self.remove(i)
+        }
+        i -= 1
+      }
+      self
+    }
+
+    /**
       * Remove all elements that satisfy predicate.
+      * Note that this method is destructive
       * @param predicate applied to each element
       * @return self
       */
