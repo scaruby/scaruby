@@ -6,6 +6,37 @@ import scala.collection.immutable
 package object collection {
   implicit class RichBuffer[A](val self: mutable.Buffer[A]) extends AnyVal {
     /**
+      * Push an `element` to the top of `self`
+      * and return self (`Buffer`)
+      * @param element pushed element
+      * @return self
+      */
+    def push(element: A): self.type = {
+      self += element
+      self
+    }
+
+    /**
+      * Return the element from the top of `self`.
+      * This method doesn't change anything and
+      * it is synonym of `last`
+      * @return top element
+      */
+    def top: A = {
+      self.last
+    }
+
+    /**
+      * Pop an element from the top of `self`
+      * and return the element
+      * @return popped element
+      */
+    def pop(): A = {
+      self.remove(self.length - 1)
+    }
+
+
+    /**
       * This method is like `map`.  But it replace element with
       * `f(element)` and destructive.
       * @param block applied to each element
