@@ -18,6 +18,16 @@ class RichBufferSpec extends FunSpec with DiagrammedAssertions {
       buf.deleteIf_!{i => i > 2}
       assert(List(1, 2) == buf.toList)
     }
+    it("filterNot_!") {
+      val buf = source.clone()
+      buf.filterNot_!{i => i > 2}
+      assert(List(1, 2) == buf.toList)
+    }
+    it("filter_!") {
+      val buf = source.clone()
+      buf.filter_!{i => i <= 2}
+      assert(List(1, 2) == buf.toList)
+    }
     it("eachIndex") {
       val indices = mutable.Buffer.empty[Int]
       val buf = source.clone()
