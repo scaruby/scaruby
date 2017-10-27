@@ -83,5 +83,5 @@ Calculate the average:
 ```scala
 import com.github.scaruby.collection._
 val seq = Seq(1.0, 2.0, 3.0)
-assert(6.0 == seq.average)
+assert(2.0 == seq.average)
 ```
