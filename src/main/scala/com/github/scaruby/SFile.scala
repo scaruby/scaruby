@@ -76,9 +76,7 @@ class SFile private (val file: File) extends SSource {
     override def accept(jFile: File): Boolean = filter(new SFile(jFile))
   }).map{f => new SFile(f)}
 
-  def list(filter: (SFile, String) => Boolean): Seq[String] = file.list(new FilenameFilter {
-    override def accept(directory: File, name: String): Boolean = filter(new SFile(directory), name)
-  })
+  def list(filter: (SFile, String) => Boolean): Seq[String] = file.list((directory: File, name: String) => filter(new SFile(directory), name))
 
   def listFiles: Seq[SFile] = file.listFiles().map(f => new SFile(f))
 
