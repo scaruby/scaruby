@@ -5,8 +5,8 @@ cache:
   - $HOME/.ivy2/cache
   - $HOME/.sbt/launchers
 scala: 
-- "2.12.1"
-- "2.11.8"
+- "2.12.4"
+- "2.11.11"
 jdk: oraclejdk8
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
