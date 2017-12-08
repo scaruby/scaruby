@@ -44,6 +44,9 @@ class SFile private (val file: File) extends SSource {
 
   def setWritableByOwnerOnly(canWritable: Boolean, ownerOnly: Boolean): Boolean = file.setWritable(canWritable, ownerOnly)
 
+  /**
+    * Returns the length of this file.
+    */
   def length: Long = file.length
 
   def parentFile: SFile = new SFile(file.getParentFile)
@@ -58,8 +61,14 @@ class SFile private (val file: File) extends SSource {
 
   def parent: String = file.getParent
 
+  /**
+    * Returns true if this is a file (is not a directory).
+    */
   def isFile: Boolean = file.isFile
 
+  /**
+    * Returns true if this is a directory (is not a file).
+    */
   def isDirectory: Boolean = file.isDirectory
 
   def isAbsolute: Boolean = file.isAbsolute
@@ -68,7 +77,17 @@ class SFile private (val file: File) extends SSource {
 
   def list: Seq[String] = file.list()
 
-  def mkdirs(): Boolean = file.mkdirs()
+  /**
+    * This method is just alias of `makeDirectories()`
+    */
+  def mkdirs(): Boolean = this.makeDirectories()
+
+  /**
+    * Make directories corresponds underlying instance.
+    * Note that several directories is created if the directories don't exist.
+    * @return
+    */
+  def makeDirectories(): Boolean = file.mkdirs()
 
   def compareTo(other: SFile): Int = file.compareTo(other.file)
 
@@ -98,12 +117,22 @@ class SFile private (val file: File) extends SSource {
 
   def setReadOnly(): Boolean = file.setReadOnly()
 
-  def mkdir(): Boolean = file.mkdir()
+  /**
+    * This method is just alias of `makeDirectory`
+    * @return
+    */
+  def mkdir(): Boolean = this.makeDirectory()
+
+  /**
+    * Create a directory corresponds this `SFile`.
+    * @return
+    */
+  def makeDirectory(): Boolean = file.mkdir()
 
   def open(): SInputStream = this.openInputStream()
 
   /**
-    * Read all texts from this file
+    * Read all texts from this file.
     * @return the content of this file
     */
   def read(): String = for {
@@ -111,7 +140,7 @@ class SFile private (val file: File) extends SSource {
   } reader.readAll()
 
   /**
-    * Read lines from this file
+    * Read lines from this file.
     * @return the sequence of lines
     */
   def readLines(): Seq[String] = for {
@@ -119,14 +148,15 @@ class SFile private (val file: File) extends SSource {
   } reader.readLines()
 
   /**
-    * Write all texts to this file
+    * Write all texts to this file.
     */
   def write(content: String): Unit = for {
     writer <- this.openWriter()
   } writer.print(content)
 
   /**
-    * Opens this `SURL`, calls the `block` with opened `SInputStream`, and closes it.
+    * Opens this `SURL`, calls the `block` with opened `SInputStream`,
+    * and closes it.
     * @param block called with `SInputStream`
     * @tparam B return type of the `block`
     * @return the result of the invocation of `block`
