@@ -4,21 +4,21 @@ import org.scalatest.{DiagrammedAssertions, FunSpec}
 
 class SFileSpec extends FunSpec with DiagrammedAssertions {
   describe("SFile.read()") {
-    it("Test1.txt") {
+    it("can read from Test1.txt") {
       val test1 = SFile.read("txt/Test1.txt")
       assert("Test1" === test1)
     }
   }
 
   describe("SFile#read()") {
-    it("Test1.txt") {
+    it("can read from Test1.txt") {
       val test1 = SFile("txt/Test1.txt").read()
       assert("Test1" === test1)
     }
   }
 
-  describe("SFile.write()") {
-    it("temprary file") {
+  describe("SFile.write(file, content)") {
+    it("can write content to file") {
       SFile.withTempFile{f =>
         val content = "Write Test"
         SFile.write(f.path, content)
@@ -28,8 +28,8 @@ class SFileSpec extends FunSpec with DiagrammedAssertions {
     }
   }
 
-  describe("SFile#write()") {
-    it("temprary file") {
+  describe("SFile#write(content)") {
+    it("can write content to a temporary file") {
       SFile.withTempFile{f =>
         val content = "Write Test"
         f.write(content)
@@ -40,7 +40,7 @@ class SFileSpec extends FunSpec with DiagrammedAssertions {
   }
 
   describe("SFile.readLines()") {
-    it("Test1Lines.txt") {
+    it("can read from Test1Lines.txt") {
       val test1Lines = SFile.readLines("txt/Test1Lines.txt")
       assert(test1Lines === Seq(
         "This", "is", "a", "test"
