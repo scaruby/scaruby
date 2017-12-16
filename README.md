@@ -29,7 +29,7 @@ Add the following lines to your build.sbt:
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.4"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.5"
 ```
 
 and you can use Scaruby like the following:
