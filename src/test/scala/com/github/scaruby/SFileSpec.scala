@@ -4,16 +4,20 @@ import org.scalatest.{DiagrammedAssertions, FunSpec}
 
 class SFileSpec extends FunSpec with DiagrammedAssertions {
   describe("SFile.read()") {
-    it("can read from Test1.txt") {
-      val test1 = SFile.read("txt/Test1.txt")
+    it("can read from test1.txt") {
+      val test1 = SFile.read("txt/test1.txt")
       assert("Test1" === test1)
     }
   }
 
   describe("SFile#read()") {
-    it("can read from Test1.txt") {
-      val test1 = SFile("txt/Test1.txt").read()
+    it("can read from test1.txt") {
+      val test1 = SFile("txt/test1.txt").read()
       assert("Test1" === test1)
+    }
+    it("can read emoji from emoji1.txt") {
+      val emoji1 = SFile("txt/emoji1.txt").read()
+      assert("⏰⏳" === emoji1)
     }
   }
 
@@ -40,8 +44,8 @@ class SFileSpec extends FunSpec with DiagrammedAssertions {
   }
 
   describe("SFile.readLines()") {
-    it("can read from Test1Lines.txt") {
-      val test1Lines = SFile.readLines("txt/Test1Lines.txt")
+    it("can read from test1lines.txt") {
+      val test1Lines = SFile.readLines("txt/test1lines.txt")
       assert(test1Lines === Seq(
         "This", "is", "a", "test"
       ))
