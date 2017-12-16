@@ -27,9 +27,15 @@ Now Scaruby supports Scala 2.11.X and Scala 2.12.X.
 Add the following lines to your build.sbt:
 
 ```scala
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.5"
+```
+
+If you'd like to use SNAPSHOT version, add the following lines:
+
+```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.5"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.6-SNAPSHOT"
 ```
 
 and you can use Scaruby like the following:
@@ -84,4 +90,48 @@ Calculate the average:
 import com.github.scaruby.collection._
 val seq = Seq(1.0, 2.0, 3.0)
 assert(2.0 == seq.average)
+```
+
+upward indexed loop (from 0.6-SNAPSHOT):
+
+```scala
+import com.github.scaruby.control._
+var list: List[Int] = Nil
+1.upTo(5){i =>
+  list = i :: list
+}
+assert(List(5, 4, 3, 2, 1) == list)
+
+list = Nil
+1.upTo(5, by = 2) {i =>
+  list = i :: list
+}
+assert(List(5, 3, 1) == list)
+```
+
+downward indexed loop (from 0.6-SNAPSHOT):
+
+```scala
+import com.github.scaruby.control._
+var list: List[Int] = Nil
+5.downTo(1){i =>
+  list = i :: list
+}
+assert(List(1, 2, 3, 4, 5) == list)
+
+list = Nil
+5.downTo(1, by = 2){i =>
+  list = i :: list
+}
+assert(List(1, 3, 5) == list)
+```
+
+n times loop (from 0.6-SNAPSHOT):
+
+```scala
+var list: List[Int] = Nil
+3.times{i =>
+  list = i :: list
+}
+assert(List(2, 1, 0) == list)
 ```
