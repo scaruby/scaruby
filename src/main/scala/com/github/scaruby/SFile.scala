@@ -75,7 +75,7 @@ class SFile private (val file: File) extends SSource {
 
   def freeSpace: Long = file.getFreeSpace
 
-  def list: Seq[String] = file.list()
+  def list: Seq[String] = file.list().toIndexedSeq
 
   /**
     * This method is just alias of `makeDirectories()`
@@ -93,13 +93,13 @@ class SFile private (val file: File) extends SSource {
 
   def listFiles(filter: (SFile) => Boolean): Seq[SFile] = file.listFiles(new FileFilter {
     override def accept(jFile: File): Boolean = filter(new SFile(jFile))
-  }).map{f => new SFile(f)}
+  }).toIndexedSeq.map{f => new SFile(f)}
 
   def list(filter: (SFile, String) => Boolean): Seq[String] = file.list(new FilenameFilter {
     override def accept(directory: File, name: String): Boolean = filter(new SFile(directory), name)
-  })
+  }).toIndexedSeq
 
-  def listFiles: Seq[SFile] = file.listFiles().map(f => new SFile(f))
+  def listFiles: Seq[SFile] = file.listFiles().toIndexedSeq.map(f => new SFile(f))
 
   def lastModified: Long = file.lastModified()
 
