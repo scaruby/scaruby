@@ -35,7 +35,7 @@ If you'd like to use SNAPSHOT version, add the following lines:
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.6-SNAPSHOT"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.7-SNAPSHOT"
 ```
 
 and you can use Scaruby like the following:
