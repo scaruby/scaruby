@@ -22,7 +22,7 @@ know the detail of `java.io`.  Instead, Scaruby provides the way to do file I/O 
 
 ## Usage
 
-Now Scaruby supports Scala 2.11.X and Scala 2.12.X.
+Now Scaruby supports Scala 2.11.X, Scala 2.12.X, and Scala 2.13.X.
 
 Add the following lines to your build.sbt:
 
