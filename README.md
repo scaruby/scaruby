@@ -27,7 +27,7 @@ Now Scaruby supports Scala 2.11.X and Scala 2.12.X.
 Add the following lines to your build.sbt:
 
 ```scala
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.5"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.6"
 ```
 
 If you'd like to use SNAPSHOT version, add the following lines:
