@@ -2,9 +2,12 @@ organization := "com.github.scaruby"
 
 name := "scaruby"
 
-scalaVersion := "2.12.7"
+def Scala211 = "2.11.11"
+def Scala212 = "2.12.8"
+def Scala213 = "2.13.0"
+scalaVersion := Scala213
 
-crossScalaVersions := Seq("2.11.11", scalaVersion.value)
+crossScalaVersions := Seq(Scala211, Scala212, Scala213)
 
 publishMavenStyle := true
 
@@ -23,7 +26,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:impli
 
 libraryDependencies ++= Seq(
   "junit" % "junit" % "4.7" % "test",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )
 
 
