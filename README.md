@@ -22,12 +22,12 @@ know the detail of `java.io`.  Instead, Scaruby provides the way to do file I/O 
 
 ## Usage
 
-Now Scaruby supports Scala 2.11.X and Scala 2.12.X.
+Now Scaruby supports Scala 2.11.X, Scala 2.12.X, and Scala 2.13.X.
 
 Add the following lines to your build.sbt:
 
 ```scala
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.5"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.6"
 ```
 
 If you'd like to use SNAPSHOT version, add the following lines:
@@ -35,7 +35,7 @@ If you'd like to use SNAPSHOT version, add the following lines:
 ```scala
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
-libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.6-SNAPSHOT"
+libraryDependencies += "com.github.scaruby" %% "scaruby" % "0.7-SNAPSHOT"
 ```
 
 and you can use Scaruby like the following:
