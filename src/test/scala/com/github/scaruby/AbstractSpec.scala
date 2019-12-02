@@ -1,5 +1,6 @@
 package com.github.scaruby
 
-import org.scalatest.{DiagrammedAssertions, FunSpec}
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-abstract class AbstractSpec extends FunSpec with DiagrammedAssertions
+abstract class AbstractSpec extends AnyFunSpec with Diagrams

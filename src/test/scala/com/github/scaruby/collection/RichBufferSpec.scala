@@ -1,11 +1,12 @@
 package com.github.scaruby.collection
 
 import com.github.scaruby.AbstractSpec
-import org.scalatest.{DiagrammedAssertions, FunSpec}
 
 import scala.collection.mutable
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-class RichBufferSpec extends FunSpec with DiagrammedAssertions {
+class RichBufferSpec extends AnyFunSpec with Diagrams {
   describe("RichBuffer") {
     val source = mutable.Buffer(1, 2, 3, 4, 5)
     it("map_!") {
