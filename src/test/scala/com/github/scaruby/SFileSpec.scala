@@ -1,8 +1,9 @@
 package com.github.scaruby
 
-import org.scalatest.{DiagrammedAssertions, FunSpec}
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-class SFileSpec extends FunSpec with DiagrammedAssertions {
+class SFileSpec extends AnyFunSpec with Diagrams {
   describe("SFile.read()") {
     it("can read from test1.txt") {
       val test1 = SFile.read("txt/test1.txt")
