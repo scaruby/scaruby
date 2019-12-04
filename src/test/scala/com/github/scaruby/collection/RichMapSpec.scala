@@ -1,10 +1,11 @@
 package com.github.scaruby.collection
 
-import org.scalatest.{DiagrammedAssertions, FunSpec}
 
 import scala.collection.mutable
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-class RichMapSpec extends FunSpec with DiagrammedAssertions {
+class RichMapSpec extends AnyFunSpec with Diagrams {
   describe("RichMap") {
     val source = Map("X" -> 1, "Y" -> 2, "Z" -> 3)
     it("keyOf") {
