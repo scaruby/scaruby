@@ -1,8 +1,9 @@
 package com.github.scaruby.collection
 
-import org.scalatest.{DiagrammedAssertions, FunSpec}
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-class RichSeqSpec extends FunSpec with DiagrammedAssertions{
+class RichSeqSpec extends AnyFunSpec with Diagrams{
   describe("RichSeq") {
     it("average") {
       val src1 = Seq(1.0, 2.0, 3.0)

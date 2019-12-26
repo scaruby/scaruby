@@ -1,10 +1,11 @@
 package com.github.scaruby.control
 
-import org.scalatest.{DiagrammedAssertions, FunSpec}
 
 import scala.collection.mutable
+import org.scalatest.diagrams.Diagrams
+import org.scalatest.funspec.AnyFunSpec
 
-class RichIntSpec extends FunSpec with DiagrammedAssertions {
+class RichIntSpec extends AnyFunSpec with Diagrams {
   describe("upTo()") {
     it("adds [1] to Buffer") {
       val buf = mutable.Buffer.empty[Int]
