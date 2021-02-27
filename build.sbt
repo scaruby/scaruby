@@ -4,7 +4,7 @@ name := "scaruby"
 
 def Scala211 = "2.11.11"
 def Scala212 = "2.12.8"
-def Scala213 = "2.13.0"
+def Scala213 = "2.13.5"
 scalaVersion := Scala213
 
 crossScalaVersions := Seq(Scala211, Scala212, Scala213)
