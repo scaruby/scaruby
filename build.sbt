@@ -3,7 +3,7 @@ organization := "com.github.scaruby"
 name := "scaruby"
 
 def Scala211 = "2.11.11"
-def Scala212 = "2.12.8"
+def Scala212 = "2.12.13"
 def Scala213 = "2.13.0"
 scalaVersion := Scala213
 
